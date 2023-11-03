@@ -2,14 +2,14 @@ from otree.api import *
 
 
 doc = """
-Your app description
+Participants choose whether they love to share
 """
 
 
 class C(BaseConstants):
-    NAME_IN_URL = 'Project1'
+    NAME_IN_URL = 'sharing_decision'
     PLAYERS_PER_GROUP = None
-    NUM_ROUNDS = 1
+    NUM_ROUNDS = 10
 
 
 class Subsession(BaseSubsession):
@@ -21,20 +21,23 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    pass
+    decision = models.BooleanField(
+        label="Do you want to share?",
+        choices=[
+            [True, "Yes"],
+            [False, "No"],
+        ]
+    )
 
 
 # PAGES
-class MyPage(Page):
-    pass
-
-
-class ResultsWaitPage(WaitPage):
-    pass
+class MakingDecision(Page):
+    form_model = 'player'
+    form_fields = ['decision']
 
 
 class Results(Page):
     pass
 
 
-page_sequence = [MyPage, ResultsWaitPage, Results]
+page_sequence = [MakingDecision]

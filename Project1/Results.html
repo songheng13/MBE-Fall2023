@@ -1,9 +1,12 @@
 {{ block title }}
-    Page title
+    Results
 {{ endblock }}
 
 {{ block content }}
-
+    <p>
+        Your answers are {{ player.decision }}.</p>
+    </p>
+    {{ formfields }}
     {{ next_button }}
 {{ endblock }}
 
